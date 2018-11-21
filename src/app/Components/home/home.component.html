@@ -1,0 +1,148 @@
+<!-- Modal -->
+<div #exampleModal class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Connect to the database</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <!--Form -->
+
+        <form (ngSubmit)="onSubmitConnection()" #heroForm="ngForm">
+          <div class="form-group row">
+            <label for="serverIpInput" class="col-sm-2 col-form-label">Server ip</label>
+            <div class="col-sm-10">
+              <input required [(ngModel)]="dbConnection.host" name="host" type="text" class="form-control" id="hostInput"
+                placeholder="192.164.1.1">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="usernameInput" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+              <input required [(ngModel)]="dbConnection.user" name="user" type="text" class="form-control" id="userInput"
+                placeholder="username">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="passwordInput" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-10">
+              <input required [(ngModel)]="dbConnection.password" name="password" type="password" class="form-control"
+                id="passwordInput" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="databaseInput" class="col-sm-2 col-form-label">Database</label>
+            <div class="col-sm-10">
+              <input required [(ngModel)]="dbConnection.database" name="database" type="text" class="form-control" id="databaseInput">
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10">
+              <button [disabled]="!heroForm.form.valid" type="submit" class="btn btn-primary">Connect</button>
+            </div>
+          </div>
+
+          <div *ngIf="this.errorMessage != ''" class="alert alert-danger" role="alert">
+            {{errorMessage}}
+          </div>
+          <div *ngIf="this.conected" class="alert alert-success" role="alert">
+            Conection Succesful
+          </div>
+        </form>
+
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="this.conected" type="button" class="btn btn-primary" (click)="checkConection()" data-dismiss="modal">Siguiente</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <hr >
+<div class="row">
+  <div class="col-lg-3 col-sm-9">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <label>
+            <strong>Log In</strong>
+          </label>
+          <div *ngIf="conected" class="form-group">
+              <label for="serverIpInput">Usuario</label>
+              <div>
+                <input required [(ngModel)]="dbConnection.host" name="host" type="text" class="form-control" id="hostInput"
+                  placeholder="192.164.1.1">
+              </div>
+              <label for="serverIpInput">Contraseña</label>
+              <div>
+                <input required [(ngModel)]="dbConnection.host" name="host" type="text" class="form-control" id="hostInput"
+                  placeholder="192.164.1.1">
+              </div>
+              <div>
+                <button type="button" class="btn btn-primary" (click)="checkConection()">Log In</button>
+              </div>
+              
+            </div>
+
+          
+          <hr class="my-2">
+          <span id='clickableAwesomeFont'>
+            <i *ngIf="!conected" class="fa fa-plus" data-toggle="modal" data-target="#exampleModal"> Add DataBase</i>
+            <i *ngIf="conected" class="fa fa-plus" data-toggle="modal" data-target="#exampleModal"> Change Data Base</i>
+          </span>
+          <hr class="my-2">
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div *ngIf="conected" class="col-lg-8">
+    <svg width='500px' height='500px' id="misvg" >
+      SVG AQUI
+    </svg>
+</div>
+
+<div class="col-lg-8">
+    <div class="card">
+      <div class="card-body">
+        <div class="form-group">
+          <label>
+            <strong>Users</strong>
+          </label>
+          <div *ngIf="conected" class="form-group">
+              <label for="serverIpInput">Usuario</label>
+              <div>
+                <input required [(ngModel)]="dbConnection.host" name="host" type="text" class="form-control" id="hostInput"
+                  placeholder="192.164.1.1">
+              </div>
+              <label for="serverIpInput">Contraseña</label>
+              <div>
+                <input required [(ngModel)]="dbConnection.host" name="host" type="text" class="form-control" id="hostInput"
+                  placeholder="192.164.1.1">
+              </div>
+              <div>
+                <button type="button" class="btn btn-primary" (click)="checkConection()">Log In</button>
+              </div>
+              
+            </div>
+
+          
+          <hr class="my-2">
+          <span id='clickableAwesomeFont'>
+            <i *ngIf="!conected" class="fa fa-plus" data-toggle="modal" data-target="#exampleModal"> Add DataBase</i>
+            <i *ngIf="conected" class="fa fa-plus" data-toggle="modal" data-target="#exampleModal"> Change Data Base</i>
+          </span>
+          <hr class="my-2">
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
